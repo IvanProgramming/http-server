@@ -1,6 +1,8 @@
-#include <iostream>
 #include <boost/asio.hpp>
 #include <vector>
+#include <iostream>
+
+#include "request.h"
 
 /*
 	Request handler should response in bytes
@@ -18,8 +20,10 @@ void router(boost::asio::ip::tcp::socket& socket) {
 	boost::asio::read_until(socket, request, "\r\n");
 
 	std::string requestAsStr = boost::asio::buffer_cast<const char*>(request.data());
+	std::cout << requestAsStr << std::endl;
+	Request req = CreateRequest(requestAsStr);
+	std::cout << req.toString() << std::endl;
 
-	std::cout << "Handling request: \n" << requestAsStr << std::endl;
 	boost::asio::write(socket, boost::asio::buffer(returnHelloWorld()));
 }
 

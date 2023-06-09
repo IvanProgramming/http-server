@@ -9,7 +9,7 @@ link_directories(${Boost_LIBRARY_DIR})
 find_package(Boost REQUIRED COMPONENTS)
 
 # add the executable
-add_executable(HTTPServer src/main.cpp src/router.cpp)
+add_executable(HTTPServer src/main.cpp src/router.cpp src/router.cpp src/request.cpp)
 
 
 # specify the C++ standard
