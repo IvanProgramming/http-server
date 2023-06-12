@@ -9,6 +9,8 @@ ProcessingException::ProcessingException(std::string message, int httpCode) {
 	this->httpCode = httpCode;
 }
 
+// Allowed HTTP methods
+const std::vector<std::string> ALLOWED_METHODS = { "GET", "POST", "PUT", "DELETE" };
 
 
 /*
@@ -19,6 +21,9 @@ ProcessingException::ProcessingException(std::string message, int httpCode) {
 	@param body The body of the request.
 */
 Request::Request(std::string method, std::string path, std::map<std::string, std::string> headers, std::string body) {
+	if (std::find(ALLOWED_METHODS.begin(), ALLOWED_METHODS.end(), method) == ALLOWED_METHODS.end()) {
+		throw(ProcessingException("Invalid method", 405));
+	}
 	this->method = method;
 	this->path = path;
 	this->headers = headers;

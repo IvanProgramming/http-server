@@ -32,6 +32,8 @@ int main() {
 		std::signal(SIGINT, handleSignal);
 
 		std::cout << "Press Ctrl+C to exit" << std::endl;
+		std::cout << "Method" << "\t\t" << "Path" << "\t\t" << "Parsed in" << "\t" << "Response in" << std::endl;
+		std::cout << "-----------------------------------------------------------------" << std::endl;
 
 		while (!shouldExit) {
 			// Wait for a new connection
