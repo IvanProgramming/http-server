@@ -2,9 +2,9 @@ cmake_minimum_required(VERSION 3.5)
 
 # set the project name
 project(HTTPServer)
-set(BOOST_ROOT "C:\\Program Files\\boost_1_82_0")
-set(Boost_INCLUDE_DIR "C:\\Program Files\\boost_1_82_0")
-set(Boost_LIBRARY_DIR "C:\\Program Files\\boost_1_82_0\\libs")
+set(BOOST_ROOT "C:\\Program Files\\Boost")
+set(Boost_INCLUDE_DIR "C:\\Program Files\\Boost")
+set(Boost_LIBRARY_DIR "C:\\Program Files\\Boost\\libs")
 link_directories(${Boost_LIBRARY_DIR})
 find_package(Boost REQUIRED COMPONENTS)
 
