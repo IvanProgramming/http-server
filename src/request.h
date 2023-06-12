@@ -3,6 +3,8 @@
 
 #include <map>
 #include <string>
+#include <vector>
+
 
 /*
 	Request represents a request from a client to a server.
