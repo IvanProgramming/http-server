@@ -44,9 +44,7 @@ void Response::SetResponseData(std::vector<char> body, int statusCode, std::map<
 }
 
 Response::Response(std::string body, int statusCode, std::map<std::string, std::string> headers) {
-	// Convert string to vector<char>
 	std::vector<char> bodyVector(body.begin(), body.end());
-	std::cout << "Body(str): " << body << std::endl;
 	this->SetResponseData(bodyVector, statusCode, headers);
 }
 
