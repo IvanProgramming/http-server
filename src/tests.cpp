@@ -1,18 +1,13 @@
 #define DOCTEST_CONFIG_IMPLEMENT_WITH_MAIN
-#include "doctest.h"
 #include <boost/asio.hpp>
 #include <boost/beast.hpp>
 #include <boost/thread.hpp>
-
-// Include the file containing the code to test
+#include "doctest.h"
 #include "router.cpp"
 #include "request.cpp"
 #include "response.cpp"
 #include "mimetypes.cpp"
 
-#include <boost/asio.hpp>
-#include <boost/beast.hpp>
-#include <boost/thread.hpp>
 
 void makeRequest(const std::string& host, const std::string& port, const std::string& target) {
 	try {
