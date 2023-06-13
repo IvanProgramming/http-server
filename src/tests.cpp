@@ -97,3 +97,17 @@ TEST_CASE("Test responding 404") {
 	
 	CHECK(asStr == "HTTP/1.1 404 Not Found\r\nContent-Length: 14\r\n\r\nFile not found");
 }
+
+
+TEST_CASE("Check mimetype") {
+	std::string mimetype = MimeByExtension("txt");
+	CHECK(mimetype == "text/plain");
+	std::string mimetype2 = MimeByExtension("abracadabra");
+	CHECK(mimetype2 == "application/octet-stream");
+}
+
+TEST_CASE("Check file extension cut") {
+	std::string fileName = "train_on_fire.mp3";
+	std::string ext = getFileExtension(fileName);
+	CHECK(ext == "mp3");
+}
