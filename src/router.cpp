@@ -4,12 +4,10 @@
 #include <chrono>
 
 #include "request.h"
+#include "response.h"
 
-/*
-	Request handler should response in bytes
-*/
-std::string returnHelloWorld() {
-	return "HTTP/1.1 200 OK\r\nContent-Length: 12\r\n\r\nHello world!";
+Response returnHelloWorld() {
+	return Response("Hello, world!");
 }
 
 /*
@@ -26,8 +24,10 @@ void router(boost::asio::ip::tcp::socket& socket) {
 
 	Request req = CreateRequest(requestAsStr);
 	std::cout << req.getMethod() << "\t\t" << req.getPath() << "\t\t" << (reqParse.count() - reqStartTime.count()) << "us\t\t";
-
-	boost::asio::write(socket, boost::asio::buffer(returnHelloWorld()));
+	
+	Response res = returnHelloWorld();
+	std::vector<char> resAsVec = res.getHTTPResponse();
+	boost::asio::write(socket, boost::asio::buffer(resAsVec));
 
 	std::chrono::microseconds reqEnd = std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::system_clock::now().time_since_epoch());
 	std::cout << reqEnd.count() - reqStartTime.count() << "us" << std::endl;

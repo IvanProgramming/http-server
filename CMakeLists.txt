@@ -9,7 +9,7 @@ link_directories(${Boost_LIBRARY_DIR})
 find_package(Boost REQUIRED COMPONENTS)
 
 # add the executable
-add_executable(HTTPServer src/main.cpp src/router.cpp src/router.cpp src/request.cpp)
+add_executable(HTTPServer src/main.cpp src/router.cpp src/router.cpp src/request.cpp "src/response.cpp" "src/response.h")
 
 
 # specify the C++ standard
@@ -25,7 +25,7 @@ execute_process(
 include_directories(${CMAKE_SOURCE_DIR}/doctest)
 
 # Add the test executable
-add_executable(HTTPServerTests src/tests.cpp)
+add_executable(HTTPServerTests src/tests.cpp "src/response.h")
 
 enable_testing()
 # Specify the C++ standard

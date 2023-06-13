@@ -1,6 +1,7 @@
 #include <map>
 #include <string>
 #include <iostream>
+#include <vector>
 
 #include "request.h"
 
