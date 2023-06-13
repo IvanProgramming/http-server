@@ -25,7 +25,7 @@ execute_process(
 include_directories(${CMAKE_SOURCE_DIR}/doctest)
 
 # Add the test executable
-add_executable(HTTPServerTests src/tests.cpp "src/mimetypes.h")
+add_executable(HTTPServerTests src/tests.cpp)
 
 enable_testing()
 # Specify the C++ standard

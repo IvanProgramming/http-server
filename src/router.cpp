@@ -1,5 +1,4 @@
 ﻿#include <boost/asio.hpp>
-#include "mimetypes.h"
 #include <vector>
 #include <iostream>
 #include <fstream>
@@ -7,6 +6,7 @@
 
 #include "request.h"
 #include "response.h"
+#include "mimetypes.h"
 
 Response returnHelloWorld() {
 	return Response("Hello, world!");

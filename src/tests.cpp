@@ -2,8 +2,10 @@
 #include "doctest.h"
 
 // Include the file containing the code to test
+#include "router.cpp"
 #include "request.cpp"
 #include "response.cpp"
+#include "mimetypes.cpp"
 
 TEST_CASE("Request Test Case") {
 	std::string request = "GET / HTTP/1.1\r\nHost: localhost:8080\r\nUser-Agent: curl/7.55.1\r\nAccept: */*\r\n\r\n";
@@ -63,4 +65,35 @@ TEST_CASE("Test URL Decoding") {
 	std::string dec = DecodeURI(enc);
 
 	CHECK(dec == "Hello world (hi)");
+}
+
+
+TEST_CASE("Test respond") {
+	std::ofstream testFile;
+	testFile.open("test.txt");
+	testFile << "Hello world";
+	testFile.close();
+
+	Request req = Request("GET", "/test.txt", std::map<std::string, std::string>{}, "");
+
+	Response r = respondFile(req);
+	
+	auto resp = r.getHTTPResponse();
+	std::string asStr = std::string(resp.begin(), resp.end());
+
+	CHECK(asStr == "HTTP/1.1 200 OK\r\nContent-Length: 11\r\nContent-Type: text/plain\r\n\r\nHello world");
+
+	std::remove("test.txt");
+}
+
+TEST_CASE("Test responding 404") {
+	std::ofstream testFile;
+	Request req = Request("GET", "/test.txt", std::map<std::string, std::string>{}, "");
+
+	Response r = respondFile(req);
+
+	auto resp = r.getHTTPResponse();
+	std::string asStr = std::string(resp.begin(), resp.end());
+	
+	CHECK(asStr == "HTTP/1.1 404 Not Found\r\nContent-Length: 14\r\n\r\nFile not found");
 }
