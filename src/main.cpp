@@ -9,8 +9,9 @@ using boost::asio::ip::tcp;
 bool shouldExit = false;
 
 /*
-    Signal handler for SIGINT (Ctrl+C)
+    @brief Signal handler for SIGINT (Ctrl+C)
     @param signal The signal that was received
+    @param error The error code
 */
 void handleSignal(const boost::system::error_code& error, int signal) {
     if (!error && signal == SIGINT) {
@@ -18,7 +19,11 @@ void handleSignal(const boost::system::error_code& error, int signal) {
     }
 }
 
-// Start accepting incoming connections
+/*
+    @brief Start accepting connections.
+	@param acceptor The acceptor to use
+	@param context The context to use
+*/
 void startAccept(boost::asio::ip::tcp::acceptor& acceptor, boost::asio::io_context& context)
 {
     // Create a new socket for each accepted connection
@@ -40,7 +45,7 @@ void startAccept(boost::asio::ip::tcp::acceptor& acceptor, boost::asio::io_conte
 }
 
 /*
-    Main function, where the program starts.
+    @brief Main function, where the program starts.
 */
 int main() {
     try {

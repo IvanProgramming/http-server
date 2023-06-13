@@ -8,7 +8,7 @@
 #include "request.h"
 
 /*
-	Constructor for Path.
+	@brief Constructor for Path.
 	@param path The path of the request.
 */
 Path::Path(std::string path) {
@@ -51,6 +51,11 @@ Path::Path(std::string path) {
 	}
 	this->hash = hash;
 }
+
+
+/*
+	@brief Default constructor for Path.
+*/
 Path::Path() {
 	// Initialize member variables with appropriate default values
 	this->path = "";
@@ -58,24 +63,45 @@ Path::Path() {
 	this->hash = "";
 }
 
+/*
+	@brief Get the path of the request.
+	@return The path of the request.
+*/
 std::string Path::getPath() {
 	return path;
 }
 
+
+/*
+	@brief Get the query of the request.
+	@return The query of the request.
+*/
 std::map<std::string, std::string> Path::getQuery() {
 	return query;
 }
 
+/*
+	@brief Get the hash of the request.
+	@return The hash of the request.
+*/
 std::string Path::getHash() {
 	return hash;
 }
 
+
+/*
+	@brief Set the path of the request.
+	@param path The path of the request.
+*/
 void Path::setPath(std::string path)
 {
 	this->path = path;
 }
 
-
+/*
+	@brief Set the query of the request.
+	@param query The query of the request.
+*/
 ProcessingException::ProcessingException(std::string message, int httpCode) {
 	this->message = message;
 	this->httpCode = httpCode;
@@ -213,7 +239,11 @@ Request CreateRequest(std::string requestString) {
 }
 
 
-
+/*
+	@brief Encode URI.
+	@param uri The URI to encode.
+	@return The encoded URI.
+*/
 std::string EncodeURI(std::string uri) {
 	// (Start) Source: https://stackoverflow.com/questions/154536/encode-decode-urls-in-c
 	std::ostringstream escaped;
@@ -239,6 +269,12 @@ std::string EncodeURI(std::string uri) {
 	// (End) Source: https://stackoverflow.com/questions/154536/encode-decode-urls-in-c
 }
 
+
+/*
+	@brief Decode URI.
+	@param uri The URI to decode.
+	@return The decoded URI.
+*/
 std::string DecodeURI(std::string uri) {
 	// (Start) Source: https://stackoverflow.com/questions/154536/encode-decode-urls-in-c
 	std::string ret;

@@ -8,10 +8,18 @@
 #include "response.h"
 #include "mimetypes.h"
 
+/*
+	@brief Returns a response with the body "Hello, world!"
+*/
 Response returnHelloWorld() {
 	return Response("Hello, world!");
 }
 
+/*
+	@brief Return file extension from a file path.
+	@param filePath The file path.
+	@return The file extension.
+*/
 std::string getFileExtension(const std::string& filePath) {
 	std::size_t lastDotIndex = filePath.find_last_of(".");
 	if (lastDotIndex != std::string::npos) {
@@ -20,6 +28,11 @@ std::string getFileExtension(const std::string& filePath) {
 	return "";  // Return an empty string if no extension found
 }
 
+/*
+	@brief Return file directory from a file path.
+	@param filePath The file path.
+	@return The file directory.
+*/
 std::string getFileDirectory(const std::string& filePath) {
 	std::size_t lastSlashIndex = filePath.find_last_of("/");
 	if (lastSlashIndex != std::string::npos) {
@@ -28,6 +41,12 @@ std::string getFileDirectory(const std::string& filePath) {
 	return "";  // Return an empty string if no directory found
 }
 
+
+/*
+	@brief Responds with a file.
+	@param request The request with file name in the path.
+	@return The response with the file content.
+*/
 Response respondFile(Request request) {
 	std::string filePath = request.getPath().getPath();
 	// Cutting off the leading slash
