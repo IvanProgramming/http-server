@@ -7,9 +7,9 @@
 
 #include "request.h"
 
-/*
-	@brief Constructor for Path.
-	@param path The path of the request.
+/*!
+*	@brief Constructor for Path.
+*	@param path The path of the request.
 */
 Path::Path(std::string path) {
 	std::string pathPart = "";
@@ -53,9 +53,9 @@ Path::Path(std::string path) {
 }
 
 
-/*
-	@brief Default constructor for Path.
-*/
+/*!
+* @brief Constructor for Path.
+* */
 Path::Path() {
 	// Initialize member variables with appropriate default values
 	this->path = "";
@@ -63,45 +63,46 @@ Path::Path() {
 	this->hash = "";
 }
 
-/*
-	@brief Get the path of the request.
-	@return The path of the request.
-*/
+/*!
+* @brief Get the path of the request.
+* @return The path of the request.
+* */
 std::string Path::getPath() {
 	return path;
 }
 
 
-/*
-	@brief Get the query of the request.
-	@return The query of the request.
-*/
+/*!
+* @brief Get the query of the request.
+* @return The query of the request.
+* */
 std::map<std::string, std::string> Path::getQuery() {
 	return query;
 }
 
-/*
-	@brief Get the hash of the request.
-	@return The hash of the request.
-*/
+/*!
+* @brief Get the hash of the request.
+* @return The hash of the request.
+* */
 std::string Path::getHash() {
 	return hash;
 }
 
 
-/*
-	@brief Set the path of the request.
-	@param path The path of the request.
-*/
+/*!
+* @brief Set the path of the request.
+* @param path The path of the request.
+* */
 void Path::setPath(std::string path)
 {
 	this->path = path;
 }
 
-/*
-	@brief Set the query of the request.
-	@param query The query of the request.
-*/
+/*!
+* @brief Processing exception constructor. Exception thrown when there is an error processing the request.
+* @param message The message of the exception.
+* @param httpCode The HTTP code of the exception.
+* */
 ProcessingException::ProcessingException(std::string message, int httpCode) {
 	this->message = message;
 	this->httpCode = httpCode;
@@ -110,12 +111,12 @@ ProcessingException::ProcessingException(std::string message, int httpCode) {
 // Allowed HTTP methods
 const std::vector<std::string> ALLOWED_METHODS = { "GET", "POST", "PUT", "DELETE" };
 
-/*
-	Constructor for Request.
-	@param method The HTTP method of the request.
-	@param path The path of the request.
-	@param headers The headers of the request.
-	@param body The body of the request.
+/*!
+*	Constructor for Request.
+*	@param method The HTTP method of the request.
+*	@param path The path of the request.
+*	@param headers The headers of the request.
+*	@param body The body of the request.
 */
 Request::Request(std::string method, std::string encPath, std::map<std::string, std::string> headers, std::string body) {
 	this->path = Path(encPath);
@@ -127,33 +128,33 @@ Request::Request(std::string method, std::string encPath, std::map<std::string, 
 	this->method = method;
 }
 
-/*
-	Get the method of the request.
-	@return The method of the request.
+/*!
+*	Get the method of the request.
+*	@return The method of the request.
 */
 std::string Request::getMethod() {
 	return this->method;
 }
 
-/*
-	Get the path of the request.
-	@return The path of the request.
+/*!
+*	Get the path of the request.
+*	@return The path of the request.
 */
 Path Request::getPath() {
 	return this->path;
 }
 
-/*
-	Get the headers of the request.
-	@return The headers of the request.
+/*!
+*	Get the headers of the request.
+*	@return The headers of the request.
 */
 std::map<std::string, std::string> Request::getHeaders() {
 	return this->headers;
 }
 
-/*
-	Serialize the request to a string.
-	@return The request as a string.
+/*!
+*	Serialize the request to a string.
+*	@return The request as a string.
 */
 std::string Request::toString() {
 	std::string debugValue = "";
@@ -168,10 +169,10 @@ std::string Request::toString() {
 }
 
 
-/* 
-	Creates request from the given string
-	@param requestString The string to be parsed
-	@return The request object
+/*!
+*	Creates request from the given string
+*	@param requestString The string to be parsed
+*	@return The request object
 */
 Request CreateRequest(std::string requestString) {
 
@@ -239,10 +240,10 @@ Request CreateRequest(std::string requestString) {
 }
 
 
-/*
-	@brief Encode URI.
-	@param uri The URI to encode.
-	@return The encoded URI.
+/*!
+*	@brief Encode URI.
+*	@param uri The URI to encode.
+*	@return The encoded URI.
 */
 std::string EncodeURI(std::string uri) {
 	// (Start) Source: https://stackoverflow.com/questions/154536/encode-decode-urls-in-c
@@ -270,10 +271,10 @@ std::string EncodeURI(std::string uri) {
 }
 
 
-/*
-	@brief Decode URI.
-	@param uri The URI to decode.
-	@return The decoded URI.
+/*!
+*	@brief Decode URI.
+*	@param uri The URI to decode.
+*	@return The decoded URI.
 */
 std::string DecodeURI(std::string uri) {
 	// (Start) Source: https://stackoverflow.com/questions/154536/encode-decode-urls-in-c

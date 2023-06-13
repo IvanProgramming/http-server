@@ -8,17 +8,17 @@
 #include "response.h"
 #include "mimetypes.h"
 
-/*
-	@brief Returns a response with the body "Hello, world!"
+/*!
+*	@brief Returns a response with the body "Hello, world!"
 */
 Response returnHelloWorld() {
 	return Response("Hello, world!");
 }
 
-/*
-	@brief Return file extension from a file path.
-	@param filePath The file path.
-	@return The file extension.
+/*!
+*	@brief Return file extension from a file path.
+*	@param filePath The file path.
+*	@return The file extension.
 */
 std::string getFileExtension(const std::string& filePath) {
 	std::size_t lastDotIndex = filePath.find_last_of(".");
@@ -28,10 +28,10 @@ std::string getFileExtension(const std::string& filePath) {
 	return "";  // Return an empty string if no extension found
 }
 
-/*
-	@brief Return file directory from a file path.
-	@param filePath The file path.
-	@return The file directory.
+/*!
+*	@brief Return file directory from a file path.
+*	@param filePath The file path.
+*	@return The file directory.
 */
 std::string getFileDirectory(const std::string& filePath) {
 	std::size_t lastSlashIndex = filePath.find_last_of("/");
@@ -42,10 +42,10 @@ std::string getFileDirectory(const std::string& filePath) {
 }
 
 
-/*
-	@brief Responds with a file.
-	@param request The request with file name in the path.
-	@return The response with the file content.
+/*!
+*	@brief Responds with a file.
+*	@param request The request with file name in the path.
+*	@return The response with the file content.
 */
 Response respondFile(Request request) {
 	std::string filePath = request.getPath().getPath();
@@ -96,9 +96,9 @@ Response respondFile(Request request) {
 	}
 }
 
-/*
-	Handle a request from a client
-	@param socket The socket to read from and write to
+/*!
+*	Handle a request from a client
+*	@param socket The socket to read from and write to
 */
 void router(boost::asio::ip::tcp::socket& socket) {
 	boost::asio::streambuf request;

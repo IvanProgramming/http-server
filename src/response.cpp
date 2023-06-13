@@ -22,22 +22,22 @@ const std::map<int, std::string> MessageByCode{
 	{503, "Service Unavailable"}
 };
 
-/*
-	@brief Constructor for Response class
-	@param body The body of the response.
-	@param statusCode The status code of the response.
-	@param headers The headers of the response.
+/*!
+*	@brief Constructor for Response class
+*	@param body The body of the response.
+*	@param statusCode The status code of the response.
+*	@param headers The headers of the response.
 */
 Response::Response(std::vector<char> body, int statusCode, std::map<std::string, std::string> headers) {
 	this->SetResponseData(body, statusCode, headers);
 }
 
 
-/*
-	@brief Set the data of the response.
-	@param body The body of the response.
-	@param statusCode The status code of the response.
-	@param headers The headers of the response.
+/*!
+*	@brief Set the data of the response.
+*	@param body The body of the response.
+*	@param statusCode The status code of the response.
+*	@param headers The headers of the response.
 */
 void Response::SetResponseData(std::vector<char> body, int statusCode, std::map<std::string, std::string> headers) {
 	this->body = body;
@@ -56,22 +56,22 @@ void Response::SetResponseData(std::vector<char> body, int statusCode, std::map<
 }
 
 
-/*
-	@brief Constructor for Response class
-	@param body The body of the response.
-	@param statusCode The status code of the response.
-	@param headers The headers of the response.
+/*!
+*	@brief Constructor for Response class
+*	@param body The body of the response.
+*	@param statusCode The status code of the response.
+*	@param headers The headers of the response.
 */
 Response::Response(std::string body, int statusCode, std::map<std::string, std::string> headers) {
 	std::vector<char> bodyVector(body.begin(), body.end());
 	this->SetResponseData(bodyVector, statusCode, headers);
 }
 
-/*
-	@brief Constructor for Response class
-	@param body The body of the response.
-	@param statusCode The status code of the response.
-	@param headers The headers of the response.
+/*!
+*	@brief Constructor for Response class
+*	@param body The body of the response.
+*	@param statusCode The status code of the response.
+*	@param headers The headers of the response.
 */
 Response::Response(std::string body) {
 	std::vector<char> bodyVector(body.begin(), body.end());
@@ -79,9 +79,9 @@ Response::Response(std::string body) {
 }
 
 
-/*
-	@brief Get the HTTP response for the response object.
-	@return The HTTP response in a vector of chars (bytes).
+/*!
+*	@brief Get the HTTP response for the response object.
+*	@return The HTTP response in a vector of chars (bytes).
 */
 std::vector<char> Response::getHTTPResponse() {
 	std::vector<char> response;
@@ -98,9 +98,9 @@ std::vector<char> Response::getHTTPResponse() {
 	return response;
 }
 
-/*
-	@brief Redirect to a new location.
-	@param location The location to redirect to.
+/*!
+*	@brief Redirect to a new location.
+*	@param location The location to redirect to.
 */
 Response RedirectResponse(std::string location)
 {

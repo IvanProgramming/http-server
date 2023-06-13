@@ -352,7 +352,11 @@ std::map<std::string, std::string> FileTypes = {
   {"zip", "application/zip"},
 };
 
-
+/*!
+* @brief Get mime type by extension
+* @param extension File extension
+* @return Mime type
+* */
 std::string MimeByExtension(std::string extension) {
 	if (FileTypes.find(extension) != FileTypes.end()) {
 		return FileTypes[extension];
