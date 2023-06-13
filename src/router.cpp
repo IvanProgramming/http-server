@@ -57,6 +57,13 @@ Response respondFile(Request request) {
 			{"Content-Type", mime},
 			{"Content-Length", std::to_string(size)}
 		};
+
+		// Checking for query parameters named "cache"
+		std::map<std::string, std::string> query = request.getPath().getQuery();
+		
+		if (query.find("cache") != query.end() && query["cache"] == "1") {
+			headers["Cache-Control"] = "max-age=3600";
+		}
 		
 		return Response(buffer, 200, headers);
 	}
