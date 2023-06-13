@@ -25,3 +25,19 @@ TEST_CASE("Response creation testcase") {
 	std::cout << asStr << std::endl;
 	CHECK(asStr == "HTTP/1.1 200 OK\r\nContent-Length: 8\r\n\r\n8byte hi");
 }
+
+TEST_CASE("Response creation from string") {
+	std::string body = "8byte hi";
+	Response r = Response(body);
+	auto resp = r.getHTTPResponse();
+	std::string asStr = std::string(resp.begin(), resp.end());
+	CHECK(asStr == "HTTP/1.1 200 OK\r\nContent-Length: 8\r\n\r\n8byte hi");
+}
+
+TEST_CASE("Response creationg with headers") {
+	std::string body = "<b>Some html</b>";
+	Response r = Response(body, 200, std::map<std::string, std::string>{ {"Content-Type", "text/html"} });
+	auto resp = r.getHTTPResponse();
+	std::string asStr = std::string(resp.begin(), resp.end());
+	CHECK(asStr == "HTTP/1.1 200 OK\r\nContent-Length: 16\r\nContent-Type: text/html\r\n\r\n<b>Some html</b>");
+}

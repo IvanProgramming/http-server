@@ -23,7 +23,7 @@ const std::map<int, std::string> MessageByCode{
 };
 
 
-Response::Response(std::vector<char>, int statusCode, std::map<std::string, std::string> headers) {
+Response::Response(std::vector<char> body, int statusCode, std::map<std::string, std::string> headers) {
 	this->SetResponseData(body, statusCode, headers);
 }
 
