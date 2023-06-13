@@ -18,6 +18,7 @@ public:
 	std::string getPath();
 	std::map<std::string, std::string> getQuery();
 	std::string getHash();
+	void setPath(std::string path);
 };
 
 
@@ -64,6 +65,7 @@ public:
 		@return The request as a string.
 	*/
 	std::string toString();
+
 };
 
 Request CreateRequest(std::string requestString);

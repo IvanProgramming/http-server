@@ -46,7 +46,8 @@ Path::Path(std::string path) {
 			std::string value = queryPart.substr(pos + 1, nextPos - pos - 1);
 			this->query[key] = DecodeURI(value);
 			queryPart.erase(0, nextPos + 1);
-		} while (nextPos != std::string::npos);
+		} while (nextPos != std::string::npos
+);
 	}
 	this->hash = hash;
 }
@@ -67,6 +68,11 @@ std::map<std::string, std::string> Path::getQuery() {
 
 std::string Path::getHash() {
 	return hash;
+}
+
+void Path::setPath(std::string path)
+{
+	this->path = path;
 }
 
 

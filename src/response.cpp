@@ -67,3 +67,8 @@ std::vector<char> Response::getHTTPResponse() {
 	response.insert(response.end(), this->body.begin(), this->body.end());
 	return response;
 }
+
+Response RedirectResponse(std::string location)
+{
+	return Response("Moving to " + location, 301, { {"Location", location} });
+}

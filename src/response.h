@@ -21,4 +21,7 @@ public:
 	Response(std::string body);
 	std::vector<char> getHTTPResponse();
 };
+
+Response RedirectResponse(std::string location);
+
 #endif
