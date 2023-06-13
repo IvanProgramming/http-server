@@ -23,7 +23,7 @@ void router(boost::asio::ip::tcp::socket& socket) {
 	std::string requestAsStr = boost::asio::buffer_cast<const char*>(request.data());
 
 	Request req = CreateRequest(requestAsStr);
-	std::cout << req.getMethod() << "\t\t" << req.getPath() << "\t\t" << (reqParse.count() - reqStartTime.count()) << "us\t\t";
+	std::cout << req.getMethod() << "\t\t" << req.getPath().getPath() << "\t\t" << (reqParse.count() - reqStartTime.count()) << "us\t\t";
 	
 	Response res = returnHelloWorld();
 	std::vector<char> resAsVec = res.getHTTPResponse();

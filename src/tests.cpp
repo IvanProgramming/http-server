@@ -10,7 +10,7 @@ TEST_CASE("Request Test Case") {
 	Request r = CreateRequest(request);
 
 	CHECK(r.getMethod() == "GET");
-	CHECK(r.getPath() == "/");
+	CHECK(r.getPath().getPath() == "/");
 }
 
 TEST_CASE("Request Exception Test Case") {
@@ -40,4 +40,27 @@ TEST_CASE("Response creationg with headers") {
 	auto resp = r.getHTTPResponse();
 	std::string asStr = std::string(resp.begin(), resp.end());
 	CHECK(asStr == "HTTP/1.1 200 OK\r\nContent-Length: 16\r\nContent-Type: text/html\r\n\r\n<b>Some html</b>");
+}
+
+TEST_CASE("Path parsing test") {
+	Path p1 = Path("/some");
+	CHECK(p1.getPath() == "/some");
+	Path p2 = Path("/some?a=1&b=2");
+	CHECK(p2.getPath() == "/some");
+	CHECK(p2.getQuery()["a"] == "1");
+	CHECK(p2.getQuery()["b"] == "2");
+	Path p3 = Path("/some?a=1#hash");
+	CHECK(p3.getPath() == "/some");
+	CHECK(p3.getQuery()["a"] == "1");
+	CHECK(p3.getHash() == "hash");
+	Path p4 = Path("/some#hash");
+	CHECK(p4.getPath() == "/some");
+	CHECK(p4.getHash() == "hash");
+}
+
+TEST_CASE("Test URL Decoding") {
+	std::string enc = "Hello%20world%20%28hi%29";
+	std::string dec = DecodeURI(enc);
+
+	CHECK(dec == "Hello world (hi)");
 }

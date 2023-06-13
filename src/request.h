@@ -4,13 +4,30 @@
 #include <map>
 #include <string>
 
+std::string EncodeURI(std::string uri);
+std::string DecodeURI(std::string uri);
+
+class Path {
+private:
+	std::string path;
+	std::map<std::string, std::string> query;
+	std::string hash;
+public:
+	Path(std::string path);
+	Path();
+	std::string getPath();
+	std::map<std::string, std::string> getQuery();
+	std::string getHash();
+};
+
+
 /*
 	Request represents a request from a client to a server.
 */
 class Request {
 private:
 	std::string method;
-	std::string path;
+	Path path;
 	std::map<std::string, std::string> headers;
 	std::string body;
 
@@ -22,7 +39,7 @@ public:
 		@param headers The headers of the request.
 		@param body The body of the request.
 	*/
-	Request(std::string method, std::string path, std::map<std::string, std::string> headers, std::string body);
+	Request(std::string method, std::string encPath, std::map<std::string, std::string> headers, std::string body);
 
 	/*
 		Get the method of the request.
@@ -34,7 +51,7 @@ public:
 		Get the path of the request.
 		@return The path of the request.
 	*/
-	std::string getPath();
+	Path getPath();
 
 	/*
 		Get the headers of the request.
@@ -59,4 +76,4 @@ private:
 	int httpCode;
 };
 
-#endif /* REQUEST_H */
+#endif
